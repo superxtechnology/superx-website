@@ -1,7 +1,7 @@
 import React from 'react';
 import { X, Cpu, Trash2, AlertTriangle, MessageSquare, Camera, Shield } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/ThemeStore';
 
 const ProductActionsModal = ({ mode, product, onClose, onConfirmDelete }) => {
   const { theme } = useThemeStore();

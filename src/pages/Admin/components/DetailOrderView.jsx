@@ -1,6 +1,6 @@
 import React from 'react';
 import { X, User, Truck, CreditCard, Clock } from 'lucide-react';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/ThemeStore';
 
 const DetailOrderView = ({ isOpen, order, onClose }) => {
   const { theme } = useThemeStore();

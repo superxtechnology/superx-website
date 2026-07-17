@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Plus, Trash2, Cpu, UploadCloud, MessageSquare } from "lucide-react";
-import useThemeStore from "../../../store/themeStore";
+import useThemeStore from "../../../store/ThemeStore";
 import useAdminAuthStore from "../../../store/adminAuthStore";
 import useToastStore from "../../../store/toastStore";
 import AxiosInstance from "../../../api/AxiosInstance";

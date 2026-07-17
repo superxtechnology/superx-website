@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Plus, PackagePlus, Eye, Trash2, Pencil, Search, RotateCw } from 'lucide-react';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/ThemeStore';
 import useAdminAuthStore from '../../../store/adminAuthStore';
 import useToastStore from '../../../store/toastStore';
 import AxiosInstance from '../../../api/AxiosInstance';

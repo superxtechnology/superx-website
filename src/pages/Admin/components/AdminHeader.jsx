@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Package, LogOut, AlertTriangle } from 'lucide-react';
-import useThemeStore from '../../../store/themeStore';
+import useThemeStore from '../../../store/ThemeStore';
 import useAdminAuthStore from '../../../store/adminAuthStore';
 import useToastStore from '../../../store/toastStore';
 import { useNavigate } from 'react-router-dom';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, Plus, Trash2, Cpu, UploadCloud, MessageSquare, X } from "lucide-react";
-import useThemeStore from "../../../store/themeStore";
+import useThemeStore from "../../../store/ThemeStore";
 import useAdminAuthStore from "../../../store/adminAuthStore";
 import AxiosInstance from "../../../api/AxiosInstance";
 import { toast } from "react-hot-toast";
