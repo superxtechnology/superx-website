@@ -4,7 +4,7 @@ import Footer from "../../components/Footer.jsx";
 import { useInjectFonts } from "./components/SupportShared";
 import SupportHero from "./components/SupportHero";
 import SupportContact from "./components/SupportContact";
-import SupportFAQ from "./components/SupportFAQ";
+import SupportFAQ from "./components/SupportFaq";
 
 export default function SupportPage() {
   useInjectFonts();

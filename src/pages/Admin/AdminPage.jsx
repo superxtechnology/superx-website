@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useThemeStore from '../../store/themeStore';
+import useThemeStore from '../../store/ThemeStore';
 import useToastStore from '../../store/toastStore';
 import AdminHeader from './components/AdminHeader';
 import AllProductTable from './components/AllProductTable';

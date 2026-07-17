@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const AxiosInstance = axios.create({
   // Agar local server chal raha hai toh http://localhost:5000/api, live hone par env file se uthayega
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://superx-backend.vercel.app/api',
   timeout: 15000, // 15 seconds ka timeout agar server slow ho
   headers: {
     'Content-Type': 'application/json',
