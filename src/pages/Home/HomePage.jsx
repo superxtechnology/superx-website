@@ -1,33 +1,99 @@
-import React from 'react'
-import Navbar from '../../components/Navbar' 
-import Footer from '../../components/Footer'
+import React, { useState, useEffect } from 'react';
+import AxiosInstance from '../../api/AxiosInstance';
+
+// Import subcomponents
+import Hero from './components/Hero';
+import CategoryList from './components/CategoryList';
+import ProductGrid from './components/ProductGrid';
+import WhyChoose from './components/WhyChoose';
+import ContactCTA from './components/ContactCTA';
+
+const WHATSAPP_NUMBER = '918743011865';
 
 const HomePage = () => {
-  return (
-    // min-h-screen aur flex-col se footer humesha bottom mein locked rahega
-    <div className="min-h-screen flex flex-col bg-white">
-      
-      {/* 1. Header Navigation */}
-      <Navbar />
-      
-      {/* 2. Main Content Area (Beech ka hissa) */}
-      <main className="flex-grow pt-20">
-        {/* Hero Section placeholder - yahan se hum beech ka hissa banana shuru karenge */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#1e293b] tracking-tight mb-6">
-            Secure Your Assets With <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent">Next-Gen Tech</span>
-          </h1>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-            Premium IP cameras, smart automation, and professional setup engineered for ultimate security.
-          </p>
-        </div>
-      </main>
-      
-      {/* 3. Footer Section */}
-      <Footer />
-      
-    </div>
-  )
-}
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [categories, setCategories] = useState(['All']);
 
-export default HomePage
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setLoading(true);
+      try {
+        const res = await AxiosInstance.get('/admin/products/public');
+        if (res.data.success) {
+          const prods = res.data.products || [];
+          setProducts(prods);
+          // Extract unique categories
+          const cats = ['All', ...new Set(prods.map(p => p.category).filter(Boolean))];
+          setCategories(cats);
+        }
+      } catch (err) {
+        console.error('Failed to load products:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = products.filter(p => {
+    const matchCat = activeCategory === 'All' || p.category === activeCategory;
+    const matchSearch = !searchQuery ||
+      p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.brand?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.subcategory?.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchCat && matchSearch;
+  });
+
+  const handleWhatsAppContact = () => {
+    const msg = encodeURIComponent('Hello SuperX Technology! 👋\n\nI would like to know more about your CCTV products and installation services.');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+  };
+
+  const handleBrowseProducts = () => {
+    document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* 1. Hero Section */}
+      <Hero
+        onBrowseProducts={handleBrowseProducts}
+        onWhatsAppContact={handleWhatsAppContact}
+      />
+
+      {/* 2. Categories Section */}
+      <CategoryList
+        activeCategory={activeCategory}
+        onSelectCategory={(cat) => {
+          setActiveCategory(cat);
+          handleBrowseProducts();
+        }}
+      />
+
+      {/* 3. Product Grid */}
+      <ProductGrid
+        loading={loading}
+        filteredProducts={filteredProducts}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        activeCategory={activeCategory}
+        setActiveCategory={setActiveCategory}
+        categories={categories}
+      />
+
+      {/* 4. Why Choose Us Section */}
+      <WhyChoose />
+
+      {/* 5. CTA Section */}
+      <ContactCTA
+        onWhatsAppContact={handleWhatsAppContact}
+      />
+    </div>
+  );
+};
+
+export default HomePage;

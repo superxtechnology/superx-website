@@ -13,9 +13,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: "Home", href: "#home", icon: Home },
-    { name: "About Us", href: "#about", icon: Info },
-    { name: "Support", href: "#support", icon: Headphones },
+    { name: "Home", href: "/", icon: Home },
+    { name: "About Us", href: "/about", icon: Info },
+    { name: "Support", href: "/support", icon: Headphones },
     {
       name: "WhatsApp",
       href: "https://wa.me/918743011865",
@@ -77,7 +77,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0f172a] text-slate-300 border-t border-slate-800/60 pt-16 pb-8">
+    <footer className="bg-[#0f172a] text-slate-300 border-t border-slate-800/60 pt-16 pb-8 overflow-x-hidden">
       {/* 🔥 MAIN GRID WITH STAGGER */}
       <motion.div
         variants={container}
