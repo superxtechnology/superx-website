@@ -11,7 +11,7 @@ export default function SupportPage() {
 
   return (
     <div
-      className="min-h-screen w-full bg-[#0B0F14] text-[#EDEFF2] selection:bg-[#4ADE80] selection:text-[#0B0F14]"
+      className="min-h-screen w-full overflow-x-hidden bg-[#0B0F14] text-[#EDEFF2] selection:bg-[#4ADE80] selection:text-[#0B0F14]"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <style>{`
