@@ -105,7 +105,7 @@ const AdminLoginPage = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="superxtechnologyadmin@gmail.com"
+                  placeholder="admin@gmail.com"
                   autoComplete="off"
                   className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-sm placeholder-slate-600 outline-none focus:border-blue-500/60 focus:bg-white/8 transition-all"
                 />
